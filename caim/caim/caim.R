@@ -18,7 +18,14 @@ caim_value <- function(partition, attribute_index, data){
     }
     quanta[quanta$class == class, partition_index] <- quanta[quanta$class == class, partition_index] + 1
   }
-  return(quanta)
+  n <- length(partition) - 1
+  caim_value_result <- 0 
+  for (k in 2:n){
+    if (sum(quanta[,k]) != 0){
+      caim_value_result <- caim_value_result + max(quanta[,k]) ^ 2 / sum(quanta[,k])  
+    }
+  }
+  return(caim_value_result)
 }
 
 caim <- function(data){
@@ -27,17 +34,30 @@ caim <- function(data){
     potential_points <- sort(unique(attribute))
     mid_points <- as.vector(head(filter(potential_points, c(0.5,0.5)), -1))
     potential_points <- sort(append(potential_points, mid_points))
-    schemes <- as.data.frame(potential_points[2:(length(potential_points) - 1)])
-    schemes$bottom <- potential_points[1]
-    schemes$top <- potential_points[length(potential_points)]
-    colnames(schemes) <- c('mid', 'bottom', 'top')
-    schemes <- schemes[,c(2,1,3)]
-    schemes$caim_value <- 0
-    for (j in 1:nrow(schemes)){
-      partition <- as.vector(schemes[j,1:(ncol(schemes) - 1)])
-      caim_value <- caim_value(partition, i, data)
-      print(partition)
-      print(caim_value)
+    bottom <- potential_points[1]
+    top <- potential_points[length(potential_points)]
+    potential_points <- potential_points[2:(length(potential_points) - 1)]
+    scheme <- c(bottom, top)
+    prev_caim_value <- 0
+    print(potential_points)
+    while (length(potential_points) > 0){
+      max_caim_value <- -1
+      for (point in potential_points){
+        potential_scheme <- sort(append(scheme, point))
+        caim_value <- caim_value(potential_scheme, i, data)
+        if (caim_value > max_caim_value){
+          max_caim_value <- caim_value
+          best_point <- point
+          best_potential_scheme <- potential_scheme
+        }
+      }
+      scheme <- best_potential_scheme
+      potential_points <- potential_points[potential_points != best_point]
+      if (prev_caim_value > max_caim_value){
+        break
+      }
+      prev_caim_value <- max_caim_value
     }
+    print(scheme)
   }
 }
