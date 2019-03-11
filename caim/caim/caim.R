@@ -10,19 +10,19 @@ caim_value <- function(partition, attribute_index, data){
   for (i in 1:nrow(data)){
     value <- data[i,attribute_index]
     class <- data[i, ncol(data)]
-    partition_index <- 1
+    partition_index <- 2
     for (j in 1:(length(partition) - 1)){
-      if (partition[j + 1] >= value){
+      if (partition[j + 1] < value){
         partition_index <- partition_index + 1
       }
     }
     quanta[quanta$class == class, partition_index] <- quanta[quanta$class == class, partition_index] + 1
   }
-  n <- length(partition) - 1
+  n <- length(partition)
   caim_value_result <- 0 
   for (k in 2:n){
     if (sum(quanta[,k]) != 0){
-      caim_value_result <- caim_value_result + max(quanta[,k]) ^ 2 / sum(quanta[,k])  
+      caim_value_result <- caim_value_result + max(quanta[,k]) ^ 2 / (sum(quanta[,k]) * (n - 1) )
     }
   }
   return(caim_value_result)
@@ -58,8 +58,7 @@ caim <- function(data){
         break
       }
       prev_caim_value <- max_caim_value
-      print(scheme)
-      print(max_caim_value)
     }
+    print(scheme)
   }
 }
