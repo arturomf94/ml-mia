@@ -30,6 +30,8 @@ caim_value <- function(partition, attribute_index, data){
 
 caim <- function(data){
   for (i in 1:(ncol(data) - 1)){
+    print('Atributo:')
+    print(colnames(data)[i])
     attribute <- data[,i]
     potential_points <- sort(unique(attribute))
     mid_points <- as.vector(head(filter(potential_points, c(0.5,0.5)), -1))
@@ -39,7 +41,6 @@ caim <- function(data){
     potential_points <- potential_points[2:(length(potential_points) - 1)]
     scheme <- c(bottom, top)
     prev_caim_value <- 0
-    print(potential_points)
     while (length(potential_points) > 0){
       max_caim_value <- -1
       for (point in potential_points){
@@ -57,7 +58,8 @@ caim <- function(data){
         break
       }
       prev_caim_value <- max_caim_value
+      print(scheme)
+      print(max_caim_value)
     }
-    print(scheme)
   }
 }
