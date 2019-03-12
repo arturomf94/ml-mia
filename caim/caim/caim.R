@@ -60,5 +60,18 @@ caim <- function(data){
       prev_caim_value <- max_caim_value
     }
     print(scheme)
+    classes <- c(1:(length(scheme)))
+    for (j in 1:length(attribute)){
+      class <- 1
+      for (k in 1:(length(scheme) - 1)){
+        if (scheme[k + 1] < attribute[j]){
+          class <- class + 1
+        }
+      }
+      data[j,i] <- class
+    }
   }
+  return(data)
 }
+
+discretized_iris <- caim(iris)
