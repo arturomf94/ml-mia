@@ -1,7 +1,10 @@
+# Import dataset
 library(datasets)
 data(iris)
 summary(iris)
 
+
+# Get caim value for a given partition and attribute
 caim_value <- function(partition, attribute_index, data){
   quanta <- as.data.frame(unique(data[,ncol(data)]))
   colnames(quanta) <- c('class')
@@ -28,6 +31,8 @@ caim_value <- function(partition, attribute_index, data){
   return(caim_value_result)
 }
 
+
+# Main caim function that returns discretized data
 caim <- function(data){
   for (i in 1:(ncol(data) - 1)){
     print('Atributo:')
@@ -74,4 +79,5 @@ caim <- function(data){
   return(data)
 }
 
+# Discretize iris dataset
 discretized_iris <- caim(iris)
