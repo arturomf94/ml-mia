@@ -1,0 +1,15 @@
+Compra, Credito, Estudiante, Ingreso, Edad
+no, excelente, no, medio, >40
+si, suficiente, si, alto, 31…40
+si, excelente, no, medio, 31…40
+si, excelente, si, medio, <=30
+si, suficiente, si, medio, >40
+si, suficiente, si, bajo, <=30
+no, suficiente, no, medio, <=30
+si, excelente, si, bajo, 31…40
+no, excelente, si, bajo, >40
+si, suficiente, si, bajo, >40
+si, suficiente, no, medio, >40
+si, suficiente, no, alto, 31…40
+no, excelente, no, alto, <=30
+no, suficiente, no, alto, <=30
