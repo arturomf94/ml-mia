@@ -1,0 +1,76 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     unbalanced_iris-weka.filters.supervised.instance.SMOTE-C0-K5-P100.0-S1
+Instances:    120
+Attributes:   5
+              sepal_length
+               sepal_width
+               petal_length
+               petal_width
+               class
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Naive Bayes Classifier
+
+                          Class
+Attribute           Iris-setosa Iris-versicolor  Iris-virginica
+                         (0.17)          (0.41)          (0.41)
+================================================================
+sepal_length
+  mean                     4.865          5.9378          6.5888
+  std. dev.               0.2688          0.5168          0.6303
+  weight sum                  20              50              50
+  precision               0.0875          0.0875          0.0875
+
+ sepal_width
+  mean                    3.3612          2.7665          2.9658
+  std. dev.                0.362          0.3065          0.3219
+  weight sum                  20              50              50
+  precision               0.0692          0.0692          0.0692
+
+ petal_length
+  mean                    1.4609          4.2609          5.5513
+  std. dev.               0.1722          0.4639          0.5509
+  weight sum                  20              50              50
+  precision               0.1217          0.1217          0.1217
+
+ petal_width
+  mean                    0.2811          1.3255          2.0189
+  std. dev.               0.1237          0.1981          0.2722
+  weight sum                  20              50              50
+  precision               0.0852          0.0852          0.0852
+
+
+
+Time taken to build model: 0 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         113               94.1667 %
+Incorrectly Classified Instances         7                5.8333 %
+Kappa statistic                          0.9067
+Mean absolute error                      0.0488
+Root mean squared error                  0.178 
+Relative absolute error                 11.6955 %
+Root relative squared error             39.0017 %
+Total Number of Instances              120     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     Iris-setosa
+                 0.940    0.057    0.922      0.940    0.931      0.880    0.986     0.980     Iris-versicolor
+                 0.920    0.043    0.939      0.920    0.929      0.880    0.986     0.983     Iris-virginica
+Weighted Avg.    0.942    0.042    0.942      0.942    0.942      0.900    0.989     0.985     
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 20  0  0 |  a = Iris-setosa
+  0 47  3 |  b = Iris-versicolor
+  0  4 46 |  c = Iris-virginica
+
